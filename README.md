@@ -1,83 +1,112 @@
-# Détection d'anomalies météorologiques — One-Class SVM
+# 🌦️ Détection des anomalies météorologiques
 
-## Présentation
-Projet Python de détection non supervisée d'observations météorologiques inhabituelles à partir du jeu de données `weatherHistory.csv`. Le modèle apprend les caractéristiques générales des observations historiques, puis signale les observations qui s'écartent de ce comportement.
+**Auteure :** Laurette Seri
 
-**Attention :** une anomalie statistique n'est pas nécessairement une erreur de capteur ni un événement météorologique dangereux. Les résultats doivent être interprétés et vérifiés.
+## 1. Présentation du projet
 
-## Objectifs
-- Explorer et préparer des données météorologiques réelles.
-- Appliquer un modèle One-Class SVM (noyau RBF).
-- Détecter des observations atypiques sur une période de test ultérieure.
-- Visualiser et exporter les résultats pour leur analyse.
+La météo évolue constamment : la température augmente ou diminue, l'humidité varie, le vent se renforce et la pression atmosphérique change.
 
-## Données et variables
-**Source :** fichier `weatherHistory.csv` fourni par l'enseignant dans le cadre d'un TP (observations météo horaires, 2006–2016). Ce jeu de données semble également circuler publiquement : vérifier son origine et sa licence avant toute réutilisation ou redistribution.
+Mais que se passe-t-il lorsqu'une combinaison de ces mesures devient inhabituelle ? Comment pourrait-on détecter automatiquement ces changements à partir d'un grand nombre de données ?
 
-Le fichier contient 96 453 observations et 12 colonnes, couvrant la période 2005–2016. Le modèle utilise : température, température ressentie, humidité, vitesse du vent, visibilité et pression. La date est conservée pour l'analyse temporelle.
+C'est à partir de ce constat qu'est née l'idée de ce projet.
 
-## Méthode
-1. Lecture, conversion des dates et tri chronologique.
-2. Remplacement des pressions nulles par des valeurs manquantes, puis imputation médiane.
-3. Séparation chronologique : premières 80 % des observations pour l'apprentissage, dernières 20 % pour le test.
-4. Standardisation ajustée uniquement sur l'apprentissage.
-5. Entraînement du One-Class SVM sur un échantillon de 6 000 observations d'apprentissage (pour maîtriser le coût de calcul du noyau RBF).
-6. Prédiction sur la période de test.
+Ce travail est également un cas pratique réalisé dans le but de mettre en application les connaissances acquises en cours d'apprentissage automatique (Machine Learning). L'objectif était de passer de la théorie à la pratique : découvrir comment un ordinateur peut apprendre à partir de données réelles, reconnaître un comportement habituel et repérer les observations qui s'en éloignent.
 
-Le modèle renvoie `1` pour une observation acceptée et `-1` pour une observation détectée comme atypique. Le paramètre `nu=0.05` règle notamment une borne sur la proportion d'observations rejetées pendant l'apprentissage ; il ne garantit pas un taux de 5 % sur le test.
+À travers ce projet, j'ai donc exploré une application concrète de l'intelligence artificielle dans l'analyse et la surveillance de données météorologiques.
 
-## Installation et exécution
-Python 3.10 ou plus récent recommandé.
+## 2. Pourquoi ce projet ?
+
+Dans de nombreux domaines, il est important de pouvoir repérer rapidement un fonctionnement inhabituel.
+
+Par exemple :
+- Dans une usine, détecter qu'une machine commence à fonctionner anormalement.
+- Dans un bâtiment, repérer une température ou une humidité inhabituelle.
+- Dans l'environnement, surveiller les variations de certaines mesures météorologiques.
+
+L'idée est donc de créer un système capable d'apprendre ce qui est habituel afin de signaler ce qui s'en éloigne.
+
+## 3. Comment fonctionne le programme ?
+
+Pour réaliser ce projet, j'ai utilisé un historique de données météorologiques contenant notamment :
+- La température extérieure ;
+- La température ressentie ;
+- Le taux d'humidité ;
+- La vitesse du vent ;
+- La visibilité ;
+- La pression atmosphérique.
+
+Le programme suit quatre grandes étapes :
+1. **Collecter les données :** utiliser un fichier contenant des mesures météorologiques réelles.
+2. **Préparer les informations :** vérifier et organiser les données pour qu'elles puissent être analysées.
+3. **Apprendre le comportement habituel :** utiliser un modèle d'intelligence artificielle pour reconnaître les situations courantes.
+4. **Repérer les anomalies :** comparer les observations avec ce que le modèle a appris et signaler les situations inhabituelles.
+
+## 4. Résultats obtenus
+
+Après l'analyse des données, le programme a étudié 19 286 observations réservées aux tests.
+
+Il a identifié :
+- 17 526 observations comme étant habituelles ;
+- 1 760 observations comme étant inhabituelles.
+
+Les graphiques suivants permettent de visualiser les résultats de l'analyse :
+- **Graphique 1 – Détection des anomalies de température :** Permet de visualiser les températures étudiées et de distinguer les observations considérées comme habituelles de celles signalées comme inhabituelles.
+- **Graphique 2 – Relation entre température et humidité :** Permet d'observer comment la température et l'humidité varient ensemble et de visualiser les observations signalées par le modèle.
+- **Graphique 3 – Répartition des observations :** Présente la répartition entre les observations considérées comme normales et celles détectées comme inhabituelles.
+- **Graphique 4 – Comparaison des différentes mesures :** Permet de comparer plusieurs paramètres météorologiques et de mieux comprendre les différences entre les observations normales et inhabituelles.
+
+> **À retenir :** Les observations signalées ne sont pas nécessairement des phénomènes météorologiques dangereux. Le fichier ne contient pas de liste d'anomalies confirmées : le programme identifie simplement les mesures qui s'écartent du comportement appris.
+
+## 5. Ce que ce projet m'a permis d'apprendre
+
+Ce projet m'a permis de passer de la théorie à la pratique et de développer plusieurs compétences :
+- L'analyse et la préparation de données réelles ;
+- La programmation en Python ;
+- La mise en œuvre d'une méthode d'apprentissage automatique ;
+- La détection de comportements inhabituels ;
+- La création et l'interprétation de graphiques ;
+- L'organisation d'un projet informatique complet.
+
+## 6. Technologies et environnement utilisés
+
+- **Python :** développement du programme.
+- **Pandas et NumPy :** manipulation des données.
+- **Scikit-learn :** création du modèle d'intelligence artificielle.
+- **Matplotlib :** réalisation des graphiques.
+- **Spyder :** environnement de développement (IDE) utilisé pour écrire, exécuter et tester le programme.
+
+## 7. Organisation du projet
+
+```text
+weather-anomaly-detection/
+├── data/              # Données météorologiques utilisées
+├── src/               # Programmes qui réalisent l'analyse
+├── results/           # Résultats et graphiques générés
+├── rapport/           # Rapport détaillé du projet
+├── run_project.py     # Programme principal pour lancer l'analyse
+├── requirements.txt   # Dépendances du projet
+└── README.md          # Documentation du projet
+```
+
+## 8. Comment lancer le projet ?
+
+Après avoir installé Python et les bibliothèques nécessaires :
 
 ```bash
-python -m venv .venv
-# Windows :
-.venv\Scripts\activate
-# macOS / Linux :
-source .venv/bin/activate
-
 pip install -r requirements.txt
 python run_project.py
 ```
 
-Le fichier CSV doit rester dans `data/weatherHistory.csv`.
+Le programme réalise automatiquement l'analyse et génère les résultats ainsi que les graphiques.
 
-## Résultats générés
-Après exécution :
-- `results/anomalies.csv` : observations de test détectées comme atypiques ;
-- `results/predictions.csv` : prédiction et score de décision pour chaque observation test ;
-- `results/figures/01_temperature_anomalies.png` : température dans le temps ;
-- `results/figures/02_temperature_humidity.png` : projection température/humidité ;
-- `results/figures/03_anomaly_distribution.png` : répartition normale/anomalie ;
-- `results/figures/04_feature_comparison.png` : comparaison des variables.
+## 9. Licence
 
-Le rapport détaillé au format Word est fourni dans `rapport/rapport_projet.docx`.
+Ce projet est distribué sous licence MIT.
 
-## Structure
-```text
-weather-anomaly-detection/
-├── data/
-│   └── weatherHistory.csv
-├── src/
-│   ├── config.py
-│   ├── preprocessing.py
-│   ├── model.py
-│   └── visualization.py
-├── results/
-│   └── figures/
-├── rapport/
-│   └── rapport_projet.docx
-├── .gitignore
-├── run_project.py
-├── requirements.txt
-└── README.md
-```
+Cette licence autorise d'autres personnes à utiliser, copier, modifier et partager le code, y compris dans des projets commerciaux, à condition notamment de conserver la notice de copyright et le texte de la licence.
 
-## Limites
-Le jeu de données ne contient pas d'étiquettes de référence indiquant les vraies anomalies. Il n'est donc pas possible de calculer directement une exactitude, une précision ou un rappel fiables. Le modèle identifie des observations atypiques au regard de l'apprentissage, pas des événements dangereux confirmés. Une validation métier ou des anomalies artificiellement injectées et connues seraient nécessaires pour une évaluation quantitative plus complète.
+## 10. Auteure
 
-## Pistes d'amélioration
-- Comparer One-Class SVM à Isolation Forest et Local Outlier Factor.
-- Étudier l'effet de `nu` et `gamma`.
-- Analyser les anomalies par saison et par variable.
-- Tester des stratégies de validation avec anomalies artificielles.
+**Laurette Seri**
+
+*Projet réalisé dans le cadre de la mise en pratique des connaissances acquises en apprentissage automatique (Machine Learning).*

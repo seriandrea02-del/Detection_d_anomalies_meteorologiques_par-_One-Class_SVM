@@ -1,0 +1,16 @@
+BILAN D'EXECUTION - WEATHER ANOMALY DETECTION
+
+Jeu de données : weatherHistory.csv
+Observations après tri chronologique et suppression des dates invalides/doublons : 96 429
+Période d'apprentissage (80 %) : 77 143 observations
+Échantillon utilisé pour ajuster One-Class SVM : 6 000 observations
+Période de test (20 %) : 19 286
+Observations classées normales : 17 526
+Anomalies détectées : 1 760
+Taux d'anomalies sur le test : 9.13 %
+
+Paramètres : kernel=rbf  nu=0.05  gamma=scale
+Variables : Temperature (C)  Apparent Temperature (C)  Humidity  Wind Speed (km/h)  Visibility (km)  Pressure (millibars)
+
+Important : le jeu de données ne contient pas de vérité terrain (étiquettes d'anomalies).
+Le taux obtenu est une sortie du modèle et non une mesure d'exactitude.

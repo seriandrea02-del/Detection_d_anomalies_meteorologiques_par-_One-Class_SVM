@@ -99,11 +99,7 @@ python run_project.py
 
 Le programme réalise automatiquement l'analyse et génère les résultats ainsi que les graphiques.
 
-## 9. Licence
 
-Ce projet est distribué sous licence MIT.
-
-Cette licence autorise d'autres personnes à utiliser, copier, modifier et partager le code, y compris dans des projets commerciaux, à condition notamment de conserver la notice de copyright et le texte de la licence.
 
 ## 10. Auteure
 

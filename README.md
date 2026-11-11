@@ -101,7 +101,7 @@ Le programme réalise automatiquement l'analyse et génère les résultats ainsi
 
 
 
-## 10. Auteure
+## 9. Auteure
 
 **Laurette Seri**
 
